@@ -1,0 +1,50 @@
+.method_box {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+
+    gap: 8px 16px;
+    padding: 8px 16px;
+    border: 1px solid red;
+}
+
+.method_title {
+    border: 1px solid blue;
+    grid-row: 1;
+    grid-column: span 2;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.code_box {
+    grid-row: 2;
+    grid-column: auto;
+
+
+    object-fit: contain;
+
+    /* width: 100%; */
+    height: 300px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    height: 278px;
+    object-fit: contain;
+
+    /* border: none; */
+    font-size: 128px;
+}
+
+.method_box > button {
+    grid-row: 3;
+    grid-column: auto;
+    justify-self: center;
+
+    width: 100px;
+    height: 32px;
+}
