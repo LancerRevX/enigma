@@ -22,7 +22,7 @@ body {
 
 .method_box {
     display: grid;
-    width: 512px;
+    width: 700px;
     height: 300px;
     gap: 8px 16px;
     padding: 8px;

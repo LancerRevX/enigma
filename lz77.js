@@ -56,7 +56,16 @@ var LZ77;
     }
     LZ77.encode = encode;
     function decode(code) {
-        return 'text';
+        let text = '';
+        for (let node of code) {
+            let substring = text.slice(-node[0]);
+            while (node[1] > 0) {
+                text += substring.slice(0, node[1]);
+                node[1] -= substring.length;
+            }
+            text += node[2];
+        }
+        return text;
     }
     LZ77.decode = decode;
 })(LZ77 || (LZ77 = {}));

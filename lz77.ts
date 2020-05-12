@@ -68,7 +68,17 @@ namespace LZ77 {
         return code
     }
 
-    export function decode(code: Array<InputNode>): string {
-        return 'text'
+    export function decode(code: Array<[number, number, string]>): string {
+        let text = ''
+        for (let node of code) {
+            let substring = text.slice(-node[0])
+            while (node[1] > 0) {
+                text += substring.slice(0, node[1])
+                node[1] -= substring.length
+            }
+            text += node[2]
+        }
+        
+        return text
     }
 }

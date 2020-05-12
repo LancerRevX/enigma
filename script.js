@@ -1,8 +1,9 @@
 "use strict";
-let text_field = document.getElementById('lz77_encoding_text_field');
+let lz77_encoding_text_field = document.getElementById('lz77_encoding_text_field');
 let buffer_size_field = document.getElementById('lz77_encoding_buffer_size_field');
+let lz77_decoding_text_field = document.getElementById('lz77_decoding_text_field');
 function encode_text() {
-    let code = LZ77.encode(text_field.value, parseInt(buffer_size_field.value));
+    let code = LZ77.encode(lz77_encoding_text_field.value, parseInt(buffer_size_field.value));
     let table_body = document.getElementById('lz77_encoding_table_body');
     table_body.textContent = '';
     for (let i = 0; i < code.length; i++) {
@@ -18,8 +19,10 @@ function encode_text() {
         table_body.append(row);
     }
 }
-(text_field.oninput = buffer_size_field.onchange = encode_text)();
-// let decode_button = document.getElementById('decode_button') as HTMLButtonElement
-// decode_button.onclick = function() {
-//     text_field.value = LZ77.decode(code_field.value)
-// }
+(lz77_encoding_text_field.oninput = buffer_size_field.onchange = encode_text)();
+function decode() {
+    let code_field = document.getElementById('lz77_decoding_code_field');
+    let code = eval(`[${lz77_decoding_text_field.value}]`);
+    code_field.value = LZ77.decode(code);
+}
+(lz77_decoding_text_field.oninput = decode)();
