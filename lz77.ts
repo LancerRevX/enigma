@@ -1,10 +1,14 @@
 namespace LZ77 {
-    interface Node {
-        buffer: string
-        remaining_text: string
+
+    interface InputNode {
         offset: number
         length: number
         next: string
+    }
+
+    interface OutputNode extends InputNode {
+        buffer: string
+        remaining_text: string
     }
 
     function find_match(buffer: string, text: string): {match_index: number, length: number} {
@@ -14,22 +18,28 @@ namespace LZ77 {
         while (substring.length > 0) {
             match_index = buffer.indexOf(substring)
             if (match_index > -1) {
-                let count = 0
                 while (text.startsWith(substring)) {
-                    count += 1
+                    length += substring.length
                     text = text.slice(substring.length)
                 }
-                length = substring.length * count
+                while (substring.length > 0) {
+                    if (text.startsWith(substring)) {
+                        length += substring.length
+                        break
+                    } else {
+                        substring = substring.slice(0, -1)
+                    }
+                }
                 break
             } else {
-                substring = substring.slice(0, substring.length - 1)
+                substring = substring.slice(0, -1)
             }
         }
         return {match_index, length}
     }
 
-    export function encode(text: string, buffer_size = 5): Array<Node> {
-        let code: Array<Node> = []
+    export function encode(text: string, buffer_size = 5): Array<OutputNode> {
+        let code: Array<OutputNode> = []
         let buffer = ''
         let current_index = 0
         while (current_index < text.length) {
@@ -41,8 +51,13 @@ namespace LZ77 {
 
             current_index += length
             let next = text[current_index]
-            if (next === undefined)
-                next = ''
+            switch (next) {
+                case undefined:
+                    next = ''
+                    break
+                case ' ':
+                    next = '␣'
+            }
 
             code.push({buffer, remaining_text, offset, length, next})
 
@@ -53,7 +68,7 @@ namespace LZ77 {
         return code
     }
 
-    export function decode(code: Array<Node>): string {
+    export function decode(code: Array<InputNode>): string {
         return 'text'
     }
 }

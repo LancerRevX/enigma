@@ -1,11 +1,9 @@
-let text_field = document.getElementById('text_field') as HTMLTextAreaElement
-let code_field = document.getElementById('code_field') as HTMLTextAreaElement
-let buffer_size_field = document.getElementById('buffer_size_field') as HTMLInputElement
+let text_field = document.getElementById('lz77_encoding_text_field') as HTMLTextAreaElement
+let buffer_size_field = document.getElementById('lz77_encoding_buffer_size_field') as HTMLInputElement
 
-let encode_button = document.getElementById('encode_button') as HTMLButtonElement
-encode_button.onclick = function() {
+function encode_text() {
     let code = LZ77.encode(text_field.value, parseInt(buffer_size_field.value))
-    let table_body = document.getElementById('code_table_body') as HTMLElement
+    let table_body = document.getElementById('lz77_encoding_table_body') as HTMLElement
     table_body.textContent = ''
     for (let i = 0; i < code.length; i++) {
         let row = document.createElement('tr')
@@ -23,6 +21,9 @@ encode_button.onclick = function() {
         table_body.append(row)
     }
 }
+
+(text_field.oninput = buffer_size_field.onchange = encode_text)()
+
 
 // let decode_button = document.getElementById('decode_button') as HTMLButtonElement
 // decode_button.onclick = function() {

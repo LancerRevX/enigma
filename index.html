@@ -6,16 +6,14 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="method_box">
-            <div class="method_title">LZ77</div>
+        <div class="method_box" id="lz77_endoding_method_box">
+            <div class="method_title">LZ77 - encoding</div>
             
-            <textarea id="text_field" spellcheck="false"></textarea>
+            <textarea id="lz77_encoding_text_field" spellcheck="false"></textarea>
             
             <div class="code_options">
-                <label for="buffer_size_input">Buffer size</label>
-                <input type="number" id="buffer_size_field" min="1" value="5">
-
-                <button id="encode_button">Process</button>
+                <label for="lz77_encoding_buffer_size_field">Buffer size</label>
+                <input type="number" id="lz77_encoding_buffer_size_field" min="1" value="5">
             </div>
             
             <div class="code_box">
@@ -38,50 +36,19 @@
                             <th>Next</th>
                         </tr>
                     </thead>
-                    <tbody id='code_table_body'>
+                    <tbody id='lz77_encoding_table_body'>
                         
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="method_box">
-            <div class="method_title">LZ77</div>
+        <div class="method_box" id="lz77_decoding_method_box">
+            <div class="method_title">LZ77 - decoding</div>
             
-            <textarea id="text_field" spellcheck="false"></textarea>
+            <textarea id="lz77_decoding_text_field" spellcheck="false"></textarea>
             
-            <div class="code_options">
-                <label for="buffer_size_input">Buffer size</label>
-                <input type="number" id="buffer_size_field" min="1" value="5">
-
-                <button id="encode_button">Process</button>
-            </div>
-            
-            <div class="code_box">
-                <table>
-                    <colgroup>
-                        <col width="12%">
-                        <col>
-                        <col>
-                        <col width="12%">
-                        <col width="12%">
-                        <col width="12%">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>Step #</th>
-                            <th>Buffer</th>
-                            <th>Remaining text</th>
-                            <th>Offset</th>
-                            <th>Length</th>
-                            <th>Next</th>
-                        </tr>
-                    </thead>
-                    <tbody id='code_table_body'>
-                        
-                    </tbody>
-                </table>
-            </div>
+            <textarea id="lz77_decoding_code_field" spellcheck="false"></textarea>
         </div>
 
         <script src="lz77.js"></script>

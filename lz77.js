@@ -8,16 +8,23 @@ var LZ77;
         while (substring.length > 0) {
             match_index = buffer.indexOf(substring);
             if (match_index > -1) {
-                let count = 0;
                 while (text.startsWith(substring)) {
-                    count += 1;
+                    length += substring.length;
                     text = text.slice(substring.length);
                 }
-                length = substring.length * count;
+                while (substring.length > 0) {
+                    if (text.startsWith(substring)) {
+                        length += substring.length;
+                        break;
+                    }
+                    else {
+                        substring = substring.slice(0, -1);
+                    }
+                }
                 break;
             }
             else {
-                substring = substring.slice(0, substring.length - 1);
+                substring = substring.slice(0, -1);
             }
         }
         return { match_index, length };
@@ -34,8 +41,13 @@ var LZ77;
                 offset = match_index - buffer.length;
             current_index += length;
             let next = text[current_index];
-            if (next === undefined)
-                next = '';
+            switch (next) {
+                case undefined:
+                    next = '';
+                    break;
+                case ' ':
+                    next = '␣';
+            }
             code.push({ buffer, remaining_text, offset, length, next });
             current_index += 1;
             buffer = text.substring(current_index - buffer_size, current_index);
