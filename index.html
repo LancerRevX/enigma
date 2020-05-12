@@ -1,23 +1,51 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Uber Enigma</title>
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="method_box">
-        <div class="method_title">LZ77</div>
-        <div class="code_box">
-            <input type="number" name="" id="">
-            <textarea></textarea>
-        </div>
-        <div class="code_box">
+    <head>
+        <meta charset="UTF-8">
+        <title>Uber Enigma</title>
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="method_box">
+            <div class="method_title">LZ77</div>
+            
+            <textarea id="text_field" spellcheck="false"></textarea>
+            
+            <div class="code_options">
+                <label for="buffer_size_input">Buffer size</label>
+                <input type="number" id="buffer_size_field" min="1" value="5">
 
-            <!-- <textarea></textarea> -->
+                <button id="encode_button">Encode</button>
+            </div>
+            
+            <div class="code_box">
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col>
+                        <col>
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Step #</th>
+                            <th>Buffer</th>
+                            <th>Remaining text</th>
+                            <th>Offset</th>
+                            <th>Length</th>
+                            <th>Next</th>
+                        </tr>
+                    </thead>
+                    <tbody id='code_table_body'>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <button>Encode</button>
-        <button>Decode</button>
-    </div>
-</body>
+
+        <script src="lz77.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
