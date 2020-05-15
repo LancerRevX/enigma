@@ -1,14 +1,13 @@
 namespace LZ77 {
 
-    interface InputNode {
+    export type InputNode = [number, number, string]
+
+    export type OutputNode = {
+        buffer: string
+        remaining_text: string
         offset: number
         length: number
         next: string
-    }
-
-    interface OutputNode extends InputNode {
-        buffer: string
-        remaining_text: string
     }
 
     function find_match(buffer: string, text: string): {match_index: number, length: number} {
@@ -38,8 +37,8 @@ namespace LZ77 {
         return {match_index, length}
     }
 
-    export function encode(text: string, buffer_size = 5): Array<OutputNode> {
-        let code: Array<OutputNode> = []
+    export function encode(text: string, buffer_size = 5): OutputNode[] {
+        let code: OutputNode[] = []
         let buffer = ''
         let current_index = 0
         while (current_index < text.length) {
@@ -68,7 +67,7 @@ namespace LZ77 {
         return code
     }
 
-    export function decode(code: Array<[number, number, string]>): string {
+    export function decode(code: InputNode[]): string {
         let text = ''
         for (let node of code) {
             let substring = text.slice(-node[0])
@@ -78,7 +77,7 @@ namespace LZ77 {
             }
             text += node[2]
         }
-        
+
         return text
     }
 }
