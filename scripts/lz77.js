@@ -38,7 +38,7 @@ var LZ77;
             let { match_index, length } = find_match(buffer, text.slice(current_index));
             let offset = 0;
             if (length > 0)
-                offset = match_index - buffer.length;
+                offset = buffer.length - match_index;
             current_index += length;
             let next = text[current_index];
             switch (next) {

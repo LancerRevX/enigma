@@ -11,13 +11,11 @@
 }
 
 body {
-    padding: 64px;
+    padding: 32px;
     background-color: var(--color_1);
     color: var(--font_color_1);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 32px;
 }
 
@@ -33,11 +31,18 @@ body {
 }
 
 #lz77_endoding_method_box {
+    justify-self: right;
     grid-template: auto 2fr 1fr / 1fr 2fr;
 }
 
-#lz77_decoding_method_box {
+#lz77_decoding_method_box, #lz78_decoding_method_box {
+    justify-self: left;
     grid-template: auto 1fr / 1fr 1fr;
+}
+
+#lz78_endoding_method_box {
+    justify-self: right;
+    grid-template: auto 24% 1fr / auto;
 }
 
 .method_title {
@@ -63,9 +68,6 @@ input {
     background-color: var(--color_4);
 }
 
-.text_field {
-}
-
 .code_options {
     border: var(--border);
     background-color: var(--color_1);
@@ -82,6 +84,11 @@ input {
     overflow: auto;
 }
 
+#lz78_encoding_code_box {
+    grid-row: 3;
+    grid-column: span 2;
+}
+
 textarea {
     resize: none;
     margin: 0;
@@ -89,6 +96,10 @@ textarea {
     padding: 16px;
     border: var(--border);
     font-size: 16px;
+}
+
+#lz78_encoding_text_field {
+    grid-column: span 2;
 }
 
 button {

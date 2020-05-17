@@ -42,11 +42,11 @@ namespace LZ77 {
         let buffer = ''
         let current_index = 0
         while (current_index < text.length) {
-            let remaining_text = text.slice(current_index);
+            let remaining_text = text.slice(current_index)
             let {match_index, length} = find_match(buffer, text.slice(current_index))
             let offset = 0
             if (length > 0)
-                offset = match_index - buffer.length
+                offset = buffer.length - match_index
 
             current_index += length
             let next = text[current_index]

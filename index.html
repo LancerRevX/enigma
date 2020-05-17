@@ -59,8 +59,56 @@
             <textarea id="lz77_decoding_code_field" spellcheck="false" readonly="true"></textarea>
         </div>
 
-        <script src="lz77.js"></script>
-        <script src="lz78.js"></script>
-        <script src="interface.js"></script>
+        <div class="method_box" id="lz78_endoding_method_box">
+            <div class="method_title">LZ78 - encoding</div>
+            
+            <textarea id="lz78_encoding_text_field" spellcheck="false" placeholder="Text"></textarea>
+            
+            <div class="code_box" id="lz78_encoding_code_box">
+                <table>
+                    <colgroup>
+                        <col width="8%">
+                        <col>
+                        <col>
+                        <col width="16%">
+                        <col width="8%">
+                        <col width="8%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Step #</th>
+                            <th>Dictionary</th>
+                            <th>Remaining text</th>
+                            <th>Found prefix</th>
+                            <th>Index</th>
+                            <th>Next</th>
+                        </tr>
+                    </thead>
+                    <tbody id='lz78_encoding_table_body'>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="method_box" id="lz78_decoding_method_box">
+            <div class="method_title">LZ78 - decoding</div>
+            
+            <textarea id="lz78_decoding_text_field" spellcheck="false" placeholder="Code">
+[0, 'a'],
+[0, 'b'],
+[1, 'c'],
+[1, 'b'],
+[4, 'a'],
+[0, 'c'],
+[4, 'c']
+            </textarea>
+            
+            <textarea id="lz78_decoding_code_field" spellcheck="false" readonly="true"></textarea>
+        </div>
+
+        <script src="scripts/lz77.js"></script>
+        <script src="scripts/lz78.js"></script>
+        <script src="scripts/interface.js"></script>
     </body>
 </html>
