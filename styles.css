@@ -42,7 +42,7 @@ body {
 
 #lz78_endoding_method_box {
     justify-self: right;
-    grid-template: auto 24% 1fr / auto;
+    grid-template: auto 18% 1fr / auto;
 }
 
 .method_title {

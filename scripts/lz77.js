@@ -7,19 +7,24 @@ var LZ77;
         let length = 0;
         while (substring.length > 0) {
             match_index = buffer.indexOf(substring);
-            if (match_index > -1) {
-                while (text.startsWith(substring)) {
-                    length += substring.length;
-                    text = text.slice(substring.length);
-                }
-                while (substring.length > 0) {
-                    if (text.startsWith(substring)) {
+            if (match_index != -1) {
+                if (buffer.endsWith(substring)) {
+                    while (text.startsWith(substring)) {
                         length += substring.length;
-                        break;
+                        text = text.slice(substring.length);
                     }
-                    else {
-                        substring = substring.slice(0, -1);
+                    while (substring.length > 0) {
+                        if (text.startsWith(substring)) {
+                            length += substring.length;
+                            break;
+                        }
+                        else {
+                            substring = substring.slice(0, -1);
+                        }
                     }
+                }
+                else {
+                    length = substring.length;
                 }
                 break;
             }
